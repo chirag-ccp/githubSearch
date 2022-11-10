@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Github User Search and List Sorting</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script type="module" src="scripts/userOperations.js" defer></script>
+    <script type="module" src="scripts/middlewares/buildCards.js" defer></script>
+    <script type="module" src="scripts/middlewares/buildTable.js" defer></script>
+    <script type="module" src="scripts/graphQlApi/getContributions.js" defer></script>
+</head>
+
+<body class="bg-gray-100 selection:bg-fuchsia-300 selection:text-fuchsia-900">
+    <div class="font-bold p-3 bg-black text-white">
+        <nav>
+            <h1 class="text-xl text-center">Github User Search and List Sorting</h1>
+        </nav>
+    </div>
+
+
+    <div class="p-5 w-full">
+        <form id="form">
+            <div class="text-center mb-5 mr-0 font-semibold grid grid-cols-2 md:grid-cols-4 gap-4">
+                <div>
+                    <div>
+                        <label for="userId">Github UserId</label>
+                    </div>
+                    <div>
+                        <input class="font-light rounded-lg p-2 mt-2 w-22 text-center" type="text" name="userId"
+                            id="userId">
+                    </div>
+                </div>
+                <div>
+                    <div>
+                        <label for="startDate">Contribution From</label>
+                    </div>
+                    <div>
+                        <input class="font-light rounded-lg mt-2 p-2 w-22" type="date" id="startDate" name="startDate">
+                    </div>
+                </div>
+                <div>
+                    <div>
+                        <label for="endDate">Contribution To</label>
+                    </div>
+                    <div>
+                        <input class="font-light rounded-lg mt-2 p-2 w-22" type="date" id="endDate" name="endDate">
+                    </div>
+                </div>
+
+                <div><button type="submit" class="bg-blue-800 hover:bg-blue-500 text-white py-3 px-7 rounded-lg mt-6"
+                        name="searchUser" id="searchUser">Search</button></div>
+            </div>
+        </form>
+
+        <div class=" overflow-auto rounded-lg shadow hidden md:block">
+            <table class="w-full">
+                <thead class="bg-gray-50 border-b-2 border-gray-200 text-center">
+                    <tr>
+                        <th data-column="name" data-order="desc"
+                            class="hover:cursor-pointer p-3 text-sm font-semibold tracking-wide">Name
+                            &#9650</th>
+                        <th data-column="contribution" data-order="desc"
+                            class="hover:cursor-pointer p-3 text-sm font-semibold tracking-wide">Contribution &#9650
+                        </th>
+                        <th data-column="followers" data-order="desc"
+                            class="hover:cursor-pointer p-3 text-sm font-semibold tracking-wide">
+                            Followers &#9650</th>
+                        <th data-column="public_repos" data-order="desc"
+                            class="hover:cursor-pointer p-3 text-sm font-semibold tracking-wide">Repo Count &#9650</th>
+                    </tr>
+                </thead>
+                <tbody class="divide-y divide-gray-100 text-center" id="myTable">
+
+
+                </tbody>
+            </table>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 md:hidden" id="myCardContainer"></div>
+
+    </div>
+
+</body>
+
+</html>
