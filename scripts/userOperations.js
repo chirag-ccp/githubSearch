@@ -3,6 +3,8 @@ import buildCards from "./middlewares/buildCards.js";
 import getContributions from "./graphQlApi/getContributions.js";
 import token from "../assets/token.js";
 
+let newToken = token.substring(0, 1) + token.substring(2, token.length);
+
 let userDisplayArray;
 let form = document.getElementById("form");
 
@@ -26,7 +28,7 @@ form.addEventListener("submit", async function (event) {
       const newContents = await contents.json();
 
       const contributionData = await getContributions(
-        token,
+        newToken,
         newContents?.login
       );
 
